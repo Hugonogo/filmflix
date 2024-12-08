@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Filmes - Simulação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #141414;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+        .movie-card {
+            background-color: #282828;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .movie-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 300px;
+        }
+        .popup h2 {
+            margin: 0 0 10px;
+            color: red;
+        }
+        .popup button {
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .popup button.close {
+            background: #d9534f;
+        }
+        .movie-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            object-fit: cover; /* Mantém proporções sem distorção */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bem-vindo ao FilmFlix, O Melhor Site de Filmes Grátis</h1>
+    </header>
+    <div class="movie-grid">
+        <div class="movie-card">
+            <img src="https://i.pinimg.com/736x/cc/be/d4/ccbed45b9de420d153340d4b3d6c04c0.jpg" alt="Filme 1">
+            <p>Filme 1</p>
+        </div>
+        <div class="movie-card">
+            <img src="https://i.pinimg.com/736x/55/35/51/55355128a426a143692ae2f25fe2f2c2.jpg" alt="Filme 2">
+            <p>Filme 2</p>
+        </div>
+        <!-- Mais filmes podem ser adicionados aqui -->
+    </div>
+    <div class="popup-overlay" id="popup">
+        <div class="popup">
+            <h2>ALERTA CRÍTICO!</h2>
+            <p>Seu dispositivo pode estar infectado com um vírus!</p>
+            <button onclick="downloadMalware()">Proteger Dispositivo</button>
+            <button class="close" onclick="closePopup()">Fechar</button>
+        </div>
+    </div>
+    <script>
+        // Simula o download de um arquivo .txt quando o botão é clicado
+        function downloadMalware() {
+            const element = document.createElement('a');
+            const file = new Blob(["Este é um arquivo de simulação de scareware."], {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = "malware.txt";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // Fecha o popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Exibe o popup ao carregar a página
+        window.onload = function() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
